@@ -28,7 +28,7 @@ jobs:
           python -m venv venv
           . venv/bin/activate
           pip install --upgrade pip pip-tools
-          pip-sync requirements.txt dev-requirements.txt
+          pip-sync --pip-args "--require-hash" requirements.txt dev-requirements.txt
 
       - name: Run the linter
         run: |

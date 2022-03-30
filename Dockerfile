@@ -34,11 +34,11 @@ RUN wget -O uwsgi-${_UWSGI_VERSION}.tar.gz https://github.com/unbit/uwsgi/archiv
   && UWSGI_BIN_NAME=/usr/local/bin/uwsgi make -C uwsgi-${_UWSGI_VERSION} \
   && rm -Rf uwsgi-*
 
-RUN pip install --no-cache-dir --upgrade pip
+RUN pip install --no-cache-dir --upgrade pip pip-tools
 
 COPY dev-requirements.txt requirements.txt /
 
-RUN pip install --no-cache-dir -r requirements.txt -r /dev-requirements.txt
+RUN pip-sync --pip-args "--require-hash --no-cache-dir" requirements.txt dev-requirements.txt
 
 WORKDIR /src
 COPY src /src
