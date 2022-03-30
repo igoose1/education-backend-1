@@ -1,5 +1,5 @@
 PIP-SYNC = pip-sync --pip-args "--require-hash"
-PIP-COMPILE = pip-compile --generate-hashes
+PIP-COMPILE = pip-compile --generate-hashes --allow-unsafe
 
 install-dev-deps: dev-deps
 	$(PIP-SYNC) requirements.txt dev-requirements.txt
